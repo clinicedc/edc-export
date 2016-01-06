@@ -22,11 +22,6 @@ setup(
     long_description=README,
     zip_safe=False,
     keywords='django edc export',
-    install_requires=[
-        'edc-base>=0.1',
-        'edc-registration>=0.1',
-        'edc-consent>=0.1',
-    ],
     classifiers=[
         'Environment :: Web Environment',
         'Framework :: Django',
@@ -36,7 +31,7 @@ setup(
         'Programming Language :: Python',
         # 'Programming Language :: Python :: 3',
         # 'Programming Language :: Python :: 3.2',
-        'Programming Language :: Python :: 3.4',
+        # 'Programming Language :: Python :: 3.4',
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
     ],
