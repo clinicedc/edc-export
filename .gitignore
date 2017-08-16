@@ -1,3 +1,4 @@
+edc_export/migrations/*
 *.py[cod]
 *.sh
 .project
