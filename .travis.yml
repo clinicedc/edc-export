@@ -1,54 +1,20 @@
 language: python
 python:
-  - "2.7"
-#  - "3.2"
-#  - "3.3"
-#  - "3.4"
-#  - "nightly"
-env:
-  - DJANGO_VERSION=1.6
-#  - DJANGO_VERSION=1.7
-#  - DJANGO_VERSION=1.8
-
+- '3.6'
 addons:
   apt_packages:
-     - swig
-     - libssl-dev
-     - libssl0.9.8
-     - python-m2crypto
-     - libcups2-dev
-     - unixodbc-dev
-     - python-mysqldb
-
+  - libcups2-dev
 services:
-  - mysql
-
-before_install:
-    - "export DISPLAY=:99.0"                         
-    - "sh -e /etc/init.d/xvfb start"
-    - sleep 3 # give xvfb some time to start
-
-virtualenv:
-  system_site_packages: true
-
+- mysql
 install:
-  - pip install --upgrade pip
-  - pip install -q Django==$DJANGO_VERSION
-  - pip install flake8
-  - pip install coveralls
-  - pip install M2Crypto
-  - pip install pyodbc
-  - pip install pycups
-  - pip install mysql-python
-  - pip install -q -r requirements.txt
-
+- pip install --upgrade pip
+- pip install flake8
+- pip install coveralls
+- pip install -q -r requirements.txt
 before_script:
-  - flake8 edc_export
-  - mysql -e 'create database edc;'
-  - mysql -e 'create database edc_lab;'
-
-script: 
-  - coverage run --source=edc_export manage.py test
-
+- flake8 edc_model_fields
+- mysql -e 'create database edc character set utf8;'
+script:
+- coverage run --source=edc_model_fields manage.py test
 after_success:
-  - coveralls
+- coveralls
