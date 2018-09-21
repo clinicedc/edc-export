@@ -23,6 +23,14 @@ setup(
     license='GPL license, see LICENSE',
     description='Base models, forms and admin for participant locator in the Edc.',
     long_description=README,
+    install_requires=[
+        'edc-base',
+        'edc_model_admin',
+        'edc-constants',
+        'edc-pdutils',
+        'django-crypto-fields',
+        'django-revision',
+    ],
     zip_safe=False,
     keywords='django edc export',
     classifiers=[
