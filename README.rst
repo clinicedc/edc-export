@@ -5,7 +5,6 @@ edc-export
 ----------
 
 
-
 .. |pypi| image:: https://img.shields.io/pypi/v/edc-export.svg
     :target: https://pypi.python.org/pypi/edc-export
     
