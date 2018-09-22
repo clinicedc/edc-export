@@ -28,6 +28,7 @@ setup(
         'edc_model_admin',
         'edc-constants',
         'edc-pdutils',
+        'edc-permissions',
         'django-crypto-fields',
         'django-revision',
     ],
