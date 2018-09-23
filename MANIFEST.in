@@ -1,0 +1,3 @@
+include AUTHORS CHANGES README.rst LICENSE VERSION
+recursive-include edc_export/templates *
+recursive-include edc_export/static *
