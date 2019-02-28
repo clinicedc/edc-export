@@ -1,4 +1,4 @@
-|pypi| |travis| |coverage|
+|pypi| |travis| |codecov| |downloads|
 
 
 edc-export
@@ -11,5 +11,9 @@ edc-export
 .. |travis| image:: https://travis-ci.com/clinicedc/edc-export.svg?branch=develop
     :target: https://travis-ci.com/clinicedc/edc-export
     
-.. |coverage| image:: https://coveralls.io/repos/github/clinicedc/edc-export/badge.svg?branch=develop
-    :target: https://coveralls.io/github/clinicedc/edc-export?branch=develop
+.. |codecov| image:: https://codecov.io/gh/clinicedc/edc-export/branch/develop/graph/badge.svg
+  :target: https://codecov.io/gh/clinicedc/edc-export
+
+.. |downloads| image:: https://pepy.tech/badge/edc-export
+   :target: https://pepy.tech/project/edc-export
+
