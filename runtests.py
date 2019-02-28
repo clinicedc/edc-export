@@ -1,13 +1,12 @@
 #!/usr/bin/env python
 import django
 import logging
+import os
 import sys
 
 from django.conf import settings
 from django.test.runner import DiscoverRunner
 from os.path import abspath, dirname, join
-
-APP_NAME = 'edc_export'
 
 
 class DisableMigrations:
@@ -19,26 +18,30 @@ class DisableMigrations:
         return None
 
 
-installed_apps = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.messages',
-    'django.contrib.sessions',
-    'django.contrib.sites',
-    'django.contrib.staticfiles',
-    'django_crypto_fields.apps.AppConfig',
-    'django_revision.apps.AppConfig',
-    'edc_appointment.apps.AppConfig',
-    'edc_timepoint.apps.AppConfig',
-    'edc_protocol.apps.AppConfig',
-    'edc_metadata.apps.AppConfig',
-    'edc_identifier.apps.AppConfig',
-    'edc_device.apps.AppConfig',
-    'edc_registration.apps.AppConfig',
-    'edc_visit_schedule.apps.AppConfig',
+base_dir = dirname(abspath(__file__))
+app_name = 'edc_export'
 
-    f'{APP_NAME}.apps.AppConfig',
+
+installed_apps = [
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "django.contrib.sites",
+    "django_crypto_fields.apps.AppConfig",
+    "django_revision.apps.AppConfig",
+    "edc_appointment.apps.AppConfig",
+    "edc_timepoint.apps.AppConfig",
+    "edc_protocol.apps.AppConfig",
+    "edc_metadata.apps.AppConfig",
+    "edc_identifier.apps.AppConfig",
+    "edc_device.apps.AppConfig",
+    "edc_registration.apps.AppConfig",
+    "edc_visit_schedule.apps.AppConfig",
+    "edc_export.apps.EdcFacilityAppConfig",
+    f'{app_name}.apps.AppConfig',
 ]
 
 DEFAULT_SETTINGS = dict(
@@ -46,7 +49,8 @@ DEFAULT_SETTINGS = dict(
     ALLOWED_HOSTS=['localhost'],
     DEBUG=True,
     # AUTH_USER_MODEL='custom_user.CustomUser',
-    ROOT_URLCONF=f'{APP_NAME}.urls',
+    APP_NAME=app_name,
+    ROOT_URLCONF=f'{app_name}.urls',
     STATIC_URL='/static/',
     INSTALLED_APPS=installed_apps,
     DATABASES={
@@ -80,13 +84,16 @@ DEFAULT_SETTINGS = dict(
     USE_L10N=True,
     USE_TZ=True,
 
-    APP_NAME=f'{APP_NAME}',
     SITE_ID=10,
     EDC_BOOTSTRAP=3,
     VERBOSE_MODE=None,
     DASHBOARD_URL_NAMES={
         'subject_dashboard_url': 'edc_export:subject_dashboard_url',
     },
+
+    COUNTRY="botswana",
+    EMAIL_CONTACTS={"data_request": "someone@example.com"},
+    HOLIDAY_FILE=os.path.join(base_dir, app_name, "tests", "holidays.csv"),
 
     DEFAULT_FILE_STORAGE='inmemorystorage.InMemoryStorage',
     MIGRATION_MODULES=DisableMigrations(),
@@ -117,7 +124,7 @@ def main():
         settings.configure(**DEFAULT_SETTINGS)
     django.setup()
     failures = DiscoverRunner(failfast=True).run_tests(
-        [f'{APP_NAME}.tests'])
+        [f'{app_name}.tests'])
     sys.exit(failures)
 
 
