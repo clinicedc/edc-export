@@ -19,9 +19,6 @@ DEFAULT_SETTINGS = DefaultTestSettings(
     BASE_DIR=base_dir,
     ETC_DIR=os.path.join(base_dir, app_name, "tests", "etc"),
     EDC_BOOTSTRAP=3,
-    SUBJECT_VISIT_MODEL="ambition_subject.subjectvisit",
-    SUBJECT_REQUISITION_MODEL="ambition_subject.subjectrequisition",
-    SUBJECT_CONSENT_MODEL='ambition_subject.subjectconsent',
     RANDOMIZATION_LIST_PATH=os.path.join(
         base_dir, app_name, "tests", "test_randomization_list.csv"),
     INSTALLED_APPS=[
@@ -37,11 +34,15 @@ DEFAULT_SETTINGS = DefaultTestSettings(
         "edc_appointment.apps.AppConfig",
         "edc_timepoint.apps.AppConfig",
         "edc_protocol.apps.AppConfig",
+        "edc_navbar.apps.AppConfig",
         "edc_metadata.apps.AppConfig",
         "edc_identifier.apps.AppConfig",
         "edc_device.apps.AppConfig",
         "edc_registration.apps.AppConfig",
         "edc_visit_schedule.apps.AppConfig",
+        "edc_dashboard.apps.AppConfig",
+        "edc_subject_dashboard.apps.AppConfig",
+        "edc_lab.apps.AppConfig",
         "edc_export.apps.EdcFacilityAppConfig",
         "edc_export.apps.AppConfig",
     ],
@@ -53,7 +54,8 @@ def main():
     if not settings.configured:
         settings.configure(**DEFAULT_SETTINGS)
     django.setup()
-    failures = DiscoverRunner(failfast=False).run_tests(
+    tags = [t.split('=')[1] for t in sys.argv if t.startswith('--tag')]
+    failures = DiscoverRunner(failfast=False, tags=tags).run_tests(
         [f'{app_name}.tests'])
     sys.exit(failures)
 
