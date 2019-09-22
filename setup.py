@@ -29,7 +29,7 @@ setup(
     description='Base models, forms and admin for participant locator in the Edc.',
     long_description=README,
     install_requires=[
-        'edc_model_admin',
+        'edc-model-admin',
         'edc-constants',
         'edc-pdutils',
         'edc-permissions',
