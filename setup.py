@@ -32,7 +32,7 @@ setup(
         'edc-model-admin',
         'edc-constants',
         'edc-pdutils',
-        'edc-permissions',
+        'edc-auth',
         'django-crypto-fields',
         'django-revision',
     ],
