@@ -1,3 +1,4 @@
 edc-appointment
 edc-test-utils
 edc-protocol
+edc-randomization
