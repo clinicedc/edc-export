@@ -6,7 +6,7 @@ omit =
     */config_utils/*
     */navbars.py
     */migrations/*
-    */mommy_*
+    */baker_*
     venv/*
     runtests.py
     .tox/*
