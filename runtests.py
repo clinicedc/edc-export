@@ -9,7 +9,6 @@ from django.test.runner import DiscoverRunner
 from edc_test_utils import DefaultTestSettings
 from os.path import abspath, dirname
 
-
 app_name = 'edc_export'
 base_dir = dirname(abspath(__file__))
 
@@ -19,8 +18,6 @@ DEFAULT_SETTINGS = DefaultTestSettings(
     BASE_DIR=base_dir,
     ETC_DIR=os.path.join(base_dir, app_name, "tests", "etc"),
     EDC_BOOTSTRAP=3,
-    RANDOMIZATION_LIST_PATH=os.path.join(
-        base_dir, app_name, "tests", "test_randomization_list.csv"),
     INSTALLED_APPS=[
         "django.contrib.admin",
         "django.contrib.auth",
