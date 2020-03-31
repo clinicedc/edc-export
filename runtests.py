@@ -9,7 +9,7 @@ from django.test.runner import DiscoverRunner
 from edc_test_utils import DefaultTestSettings
 from os.path import abspath, dirname
 
-app_name = 'edc_export'
+app_name = "edc_export"
 base_dir = dirname(abspath(__file__))
 
 DEFAULT_SETTINGS = DefaultTestSettings(
@@ -28,6 +28,7 @@ DEFAULT_SETTINGS = DefaultTestSettings(
         "django.contrib.sites",
         "django_crypto_fields.apps.AppConfig",
         "django_revision.apps.AppConfig",
+        "multisite",
         "edc_appointment.apps.AppConfig",
         "edc_timepoint.apps.AppConfig",
         "edc_protocol.apps.AppConfig",
@@ -52,11 +53,9 @@ def main():
     if not settings.configured:
         settings.configure(**DEFAULT_SETTINGS)
     django.setup()
-    tags = [t.split('=')[1] for t in sys.argv if t.startswith('--tag')]
-    failfast = [t.split('=')[1]
-                for t in sys.argv if t.startswith('--failfast')]
-    failures = DiscoverRunner(failfast=True, tags=tags).run_tests(
-        [f'{app_name}.tests'])
+    tags = [t.split("=")[1] for t in sys.argv if t.startswith("--tag")]
+    failfast = [t.split("=")[1] for t in sys.argv if t.startswith("--failfast")]
+    failures = DiscoverRunner(failfast=True, tags=tags).run_tests([f"{app_name}.tests"])
     sys.exit(failures)
 
 
