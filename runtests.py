@@ -30,6 +30,7 @@ DEFAULT_SETTINGS = DefaultTestSettings(
         "django_revision.apps.AppConfig",
         "multisite",
         "edc_appointment.apps.AppConfig",
+        "edc_crf.apps.AppConfig",
         "edc_timepoint.apps.AppConfig",
         "edc_protocol.apps.AppConfig",
         "edc_metadata.apps.AppConfig",
