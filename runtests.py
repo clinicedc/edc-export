@@ -44,6 +44,7 @@ DEFAULT_SETTINGS = DefaultTestSettings(
         "edc_subject_dashboard.apps.AppConfig",
         "edc_lab.apps.AppConfig",
         "edc_sites.apps.AppConfig",
+        "edc_visit_tracking.apps.AppConfig",
         "edc_export.apps.EdcFacilityAppConfig",
         "edc_export.apps.AppConfig",
     ],
