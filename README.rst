@@ -1,4 +1,4 @@
-|pypi| |travis| |codecov| |downloads|
+|pypi| |actions| |codecov| |downloads|
 
 
 edc-export
@@ -7,10 +7,10 @@ edc-export
 
 .. |pypi| image:: https://img.shields.io/pypi/v/edc-export.svg
     :target: https://pypi.python.org/pypi/edc-export
-    
-.. |travis| image:: https://travis-ci.com/clinicedc/edc-export.svg?branch=develop
-    :target: https://travis-ci.com/clinicedc/edc-export
-    
+
+.. |actions| image:: https://github.com/clinicedc/edc-export/workflows/build/badge.svg?branch=develop
+  :target: https://github.com/clinicedc/edc-export/actions?query=workflow:build
+
 .. |codecov| image:: https://codecov.io/gh/clinicedc/edc-export/branch/develop/graph/badge.svg
   :target: https://codecov.io/gh/clinicedc/edc-export
 
