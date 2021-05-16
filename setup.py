@@ -23,7 +23,6 @@ setup(
     license="GPL license, see LICENSE",
     description="Export from in the clinicedc/edc.",
     long_description=README,
-    install_requires=[],
     zip_safe=False,
     keywords="django edc export",
     classifiers=[
