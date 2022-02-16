@@ -22,6 +22,7 @@ setup(
     url="https://github.com/clinicedc/edc-export",
     license="GPL license, see LICENSE",
     description="Export from in the clinicedc/edc.",
+    long_description_content_type="text/x-rst",
     long_description=README,
     zip_safe=False,
     keywords="django edc export",
