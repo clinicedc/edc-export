@@ -29,7 +29,6 @@ DEFAULT_SETTINGS = DefaultTestSettings(
         "django_crypto_fields.apps.AppConfig",
         "django_revision.apps.AppConfig",
         "multisite",
-        "import_export",
         "edc_appointment.apps.AppConfig",
         "edc_crf.apps.AppConfig",
         "edc_timepoint.apps.AppConfig",
