@@ -56,8 +56,7 @@ def main():
         settings.configure(**DEFAULT_SETTINGS)
     django.setup()
     tags = [t.split("=")[1] for t in sys.argv if t.startswith("--tag")]
-    failfast = [t.split("=")[1] for t in sys.argv if t.startswith("--failfast")]
-    failures = DiscoverRunner(failfast=failfast, tags=tags).run_tests([f"{app_name}.tests"])
+    failures = DiscoverRunner(failfast=False, tags=tags).run_tests([f"{app_name}.tests"])
     sys.exit(failures)
 
 
