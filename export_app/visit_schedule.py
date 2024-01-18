@@ -10,6 +10,8 @@ from edc_visit_schedule.visit import (
 )
 from edc_visit_schedule.visit_schedule import VisitSchedule
 
+from .consents import consent_v1
+
 
 class MockPanel(DummyPanel):
     """`requisition_model` is normally set when the lab profile
@@ -28,11 +30,11 @@ panel_five = MockPanel(name="five")
 panel_six = MockPanel(name="six")
 
 crfs = CrfCollection(
-    Crf(show_order=1, model="edc_metadata.crfone", required=True),
-    Crf(show_order=2, model="edc_metadata.crftwo", required=True),
-    Crf(show_order=3, model="edc_metadata.crfthree", required=True),
-    Crf(show_order=4, model="edc_metadata.crffour", required=True),
-    Crf(show_order=5, model="edc_metadata.crffive", required=True),
+    Crf(show_order=1, model="export_app.crfone", required=True),
+    Crf(show_order=2, model="export_app.crftwo", required=True),
+    Crf(show_order=3, model="export_app.crfthree", required=True),
+    Crf(show_order=4, model="export_app.crffour", required=True),
+    Crf(show_order=5, model="export_app.crffive", required=True),
 )
 
 requisitions = RequisitionCollection(
@@ -46,25 +48,25 @@ requisitions = RequisitionCollection(
 
 
 crfs_unscheduled = CrfCollection(
-    Crf(show_order=1, model="edc_metadata.crfone", required=True),
-    Crf(show_order=3, model="edc_metadata.crfthree", required=True),
-    Crf(show_order=5, model="edc_metadata.crffive", required=True),
+    Crf(show_order=1, model="export_app.crfone", required=True),
+    Crf(show_order=3, model="export_app.crfthree", required=True),
+    Crf(show_order=5, model="export_app.crffive", required=True),
 )
 
 
 visit_schedule1 = VisitSchedule(
     name="visit_schedule1",
-    offstudy_model="edc_export.subjectoffstudy",
-    death_report_model="edc_export.deathreport",
+    offstudy_model="edc_offstudy.subjectoffstudy",
+    death_report_model="edc_adverse_event.deathreport",
     locator_model="edc_locator.subjectlocator",
 )
 
 schedule1 = Schedule(
     name="schedule1",
-    onschedule_model="edc_export.onscheduleone",
-    offschedule_model="edc_export.offscheduleone",
+    onschedule_model="export_app.onscheduleone",
+    offschedule_model="export_app.offscheduleone",
     appointment_model="edc_appointment.appointment",
-    consent_model="edc_export.subjectconsent",
+    consent_definitions=[consent_v1],
 )
 
 
