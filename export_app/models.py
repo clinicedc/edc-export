@@ -1,4 +1,4 @@
-from uuid import uuid4
+from datetime import date
 
 from django.db import models
 from django.db.models.deletion import PROTECT
@@ -6,11 +6,12 @@ from django_crypto_fields.fields import EncryptedCharField
 from edc_constants.constants import YES
 from edc_crf.model_mixins import CrfWithActionModelMixin
 from edc_identifier.managers import SubjectIdentifierManager
-from edc_identifier.model_mixins import UniqueSubjectIdentifierModelMixin
+from edc_identifier.model_mixins import NonUniqueSubjectIdentifierFieldMixin
 from edc_lab.model_mixins import RequisitionModelMixin
 from edc_list_data.model_mixins import BaseListModelMixin, ListModelMixin
 from edc_model.models import BaseUuidModel
 from edc_offstudy.model_mixins import OffstudyModelMixin
+from edc_registration.model_mixins import UpdatesOrCreatesRegistrationModelMixin
 from edc_sites.model_mixins import SiteModelMixin
 from edc_utils import get_utcnow
 from edc_visit_schedule.model_mixins.off_schedule_model_mixin import (
@@ -22,8 +23,45 @@ from edc_visit_tracking.model_mixins import (
     VisitModelMixin,
 )
 
-from ..managers import ExportHistoryManager
-from ..model_mixins import ExportTrackingFieldsModelMixin
+from edc_export.managers import ExportHistoryManager
+from edc_export.model_mixins import ExportTrackingFieldsModelMixin
+
+
+class SubjectScreening(
+    SiteModelMixin,
+    NonUniqueSubjectIdentifierFieldMixin,
+    BaseUuidModel,
+):
+    report_datetime = models.DateTimeField(default=get_utcnow)
+
+    screening_identifier = models.CharField(max_length=50)
+
+    screening_datetime = models.DateTimeField(default=get_utcnow)
+
+    age_in_years = models.IntegerField(default=25)
+
+
+class SubjectConsent(
+    SiteModelMixin,
+    NonUniqueSubjectIdentifierFieldMixin,
+    UpdatesOrCreatesRegistrationModelMixin,
+    BaseUuidModel,
+):
+    consent_datetime = models.DateTimeField(default=get_utcnow)
+
+    version = models.CharField(max_length=25, default="1")
+
+    identity = models.CharField(max_length=25)
+
+    confirm_identity = models.CharField(max_length=25)
+
+    dob = models.DateField(default=date(1995, 1, 1))
+
+    citizen = models.CharField(max_length=25, default=YES)
+
+    legal_marriage = models.CharField(max_length=25, null=True)
+
+    marriage_certificate = models.CharField(max_length=25, null=True)
 
 
 class SubjectVisit(SiteModelMixin, VisitModelMixin, BaseUuidModel):
@@ -56,20 +94,6 @@ class SubjectVisitMissed(
     ):
         verbose_name = "Missed Visit Report"
         verbose_name_plural = "Missed Visit Report"
-
-
-class SubjectConsent(BaseUuidModel, SiteModelMixin, UniqueSubjectIdentifierModelMixin):
-    consent_datetime = models.DateTimeField(default=get_utcnow)
-
-    dob = models.DateField(null=True)
-
-    identity = models.CharField(max_length=32, default=uuid4().hex)
-
-    citizen = models.CharField(max_length=25, default=YES)
-
-    legal_marriage = models.CharField(max_length=25, null=True)
-
-    marriage_certificate = models.CharField(max_length=25, null=True)
 
 
 class SubjectLocator(BaseUuidModel):
