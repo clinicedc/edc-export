@@ -64,6 +64,11 @@ class SubjectConsent(
     marriage_certificate = models.CharField(max_length=25, null=True)
 
 
+class SubjectConsentV1(SubjectConsent):
+    class Meta:
+        proxy = True
+
+
 class SubjectVisit(SiteModelMixin, VisitModelMixin, BaseUuidModel):
     survival_status = models.CharField(max_length=25, null=True)
 
