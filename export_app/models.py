@@ -3,6 +3,7 @@ from datetime import date
 from django.db import models
 from django.db.models.deletion import PROTECT
 from django_crypto_fields.fields import EncryptedCharField
+from edc_consent.managers import ConsentObjectsByCdefManager, CurrentSiteByCdefManager
 from edc_constants.constants import YES
 from edc_crf.model_mixins import CrfWithActionModelMixin
 from edc_identifier.managers import SubjectIdentifierManager
@@ -65,6 +66,9 @@ class SubjectConsent(
 
 
 class SubjectConsentV1(SubjectConsent):
+    on_site = CurrentSiteByCdefManager()
+    objects = ConsentObjectsByCdefManager()
+
     class Meta:
         proxy = True
 
