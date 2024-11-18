@@ -16,4 +16,3 @@ edc-export
 
 .. |downloads| image:: https://pepy.tech/badge/edc-export
    :target: https://pepy.tech/project/edc-export
-
