@@ -193,8 +193,7 @@ class CrfWithInline(CrfModelMixin, BaseUuidModel):
 
 
 class OnScheduleOne(SiteModelMixin, OnScheduleModelMixin, BaseUuidModel):
-    def put_on_schedule(self):
-        pass
+    pass
 
 
 class OffScheduleOne(SiteModelMixin, OffScheduleModelMixin, BaseUuidModel):
